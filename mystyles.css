@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --bg-color: #081b29;
+  --main-color: #00abf0;
+  --text-color: #333;
+  --second-text-color: #555;
+  --white-color: #fff;
+  --cover-color: linear-gradient(45deg, #00abf0, #006e9a);
+  --pages-color: linear-gradient(90deg, #fff, #ddd);
+  --border: .125rem solid #00abf0;
+  --box-shadow: 0 0 .6rem rgba(0, 0, 0, .2);
+}
+
+body {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.wrapper {
+  position: relative;
+  width: 66rem; /* Set width to create a book-like layout */
+  height: 45rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center content */
+  perspective: 2000px; /* Perspective for 3D effect */
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%; /* The cover takes up the left half */
+  height: 100%;
+  background: var(--cover-color);
+  box-shadow: var(--box-shadow);
+  border-top-left-radius: .6rem;
+  border-bottom-left-radius: .6rem;
+  transform-origin: right;
+  z-index: -1; /* Ensure it stays behind the content */
+}
+
+.cover.cover-left {
+  z-index: -1;
+}
+
+.cover.cover-right.turn {
+  transform: rotateY(180deg); /* Optional if you want the right cover effect */
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.book-page {
+  position: absolute;
+  width: 50%; /* Each content page takes up half the width */
+  height: 100%;
+  background: var(--pages-color);
+  box-shadow: 0 0 .6rem rgba(0, 0, 0, .1);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  z-index: 1; /* Keep it above the cover */
+  backface-visibility: hidden;
+  transform-origin: left;
+}
+
+.page-left {
+  left: 0;
+}
+
+.page-right {
+  right: 0;
+}
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-page img {
+  max-width: 180px;
+  border-radius: 50%;
+  border: .25rem solid var(--main-color);
+  margin-bottom: .8rem;
+}
+
+.profile-page h1 {
+  font-size: 2.7rem;
+  line-height: 1;
+}
+
+.profile-page h3 {
+  font-size: 1.5rem;
+  color: var(--main-color);
+}
+
+.social-media {
+  margin: .6rem 0 .8rem;
+}
+
+.social-media a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: var(--border);
+  border-radius: 50%;
+  font-size: 1.3rem;
+  color: var(--main-color);
+  margin: 0 .2rem;
+  transition: .5s;
+}
+
+.social-media a:hover {
+  background-color: var(--main-color);
+  color: var(--white-color);
+}
+
+.btn-box {
+  margin-top: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: .6rem 1.2rem;
+  margin: .4rem;
+  background: var(--main-color);
+  color: var(--white-color);
+  border-radius: .5rem;
+  transition: background .3s;
+}
+
+.btn:hover {
+  background: #006e9a;
+}
+
+.page-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.workeduc-content {
+  margin-top: 1rem;
+}
+
+.year {
+  font-size: 1rem;
+  color: var(--second-text-color);
+}
+
+.workeduc-content h3 {
+  font-size: 1.3rem;
+  color: var(--text-color);
+  margin-top: .5rem;
+}
+
+.workeduc-content p {
+  font-size: .9rem;
+  color: var(--second-text-color);
+  margin-top: .2rem;
+}
+
+/* Animation for turning pages */
+.book-page {
+  transition: transform 0.8s ease;
+}
+
+.book-page.show {
+  transform: rotateY(0deg);
+}
+
+.book-page.hide {
+  transform: rotateY(-180deg);
+}
+
+.book-page:not(.show):not(.hide) {
+  transform: rotateY(180deg);
+}
+
+/* Page Turn Icon */
+.turn-icon {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 2rem;
+  color: var(--main-color);
+  transition: color 0.3s;
+}
+
+.turn-icon:hover {
+  color: #006e9a;
+}
